@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Aether Wing IV</title>
+    <style>
+      html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden;
+                   overscroll-behavior: none; -webkit-user-select: none; user-select: none; }
+      #unity-canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; background: #000;
+                      touch-action: none; }
+      #loading { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
+                 justify-content: center; color: #cfe8ff; font: 16px -apple-system, Helvetica, sans-serif;
+                 pointer-events: none; }
+      #loading h1 { font-weight: 300; letter-spacing: .2em; margin: 0 0 18px; }
+      #bar { width: 220px; height: 3px; background: rgba(140,210,255,.2); }
+      #fill { width: 0%; height: 100%; background: rgba(140,210,255,.9); }
+    </style>
+  </head>
+  <body>
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <div id="loading"><h1>AETHER WING IV</h1><div id="bar"><div id="fill"></div></div></div>
+    <script src="Build/web.loader.js"></script>
+    <script>
+      // Stop iOS Safari from scrolling/zooming the page under the game's own touch handling.
+      document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+      document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        arguments: [],
+        dataUrl: "Build/web.data.unityweb",
+        frameworkUrl: "Build/web.framework.js.unityweb",
+        codeUrl: "Build/web.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "GoSolarSystem",
+        productName: "Aether Wing IV",
+        productVersion: "0.1.0",
+      }, function (progress) {
+        document.getElementById("fill").style.width = (progress * 100) + "%";
+      }).then(function () {
+        document.getElementById("loading").style.display = "none";
+      }).catch(function (message) {
+        document.getElementById("loading").innerHTML = "<div>Could not start: " + message + "</div>";
+      });
+    </script>
+  </body>
+</html>
