@@ -9,3 +9,5 @@ A real-time, explorable model of the solar system that runs in the browser. Best
 Planet textures: © INOVE / Solar System Scope, CC BY 4.0 (adapted). Orbital data: NASA / JPL Horizons.
 
 [Privacy policy and terms of use](https://jsterrett40.github.io/01268TAbwa-jws/privacy.html) (the terms are under the heading "Terms of Use").
+
+© 2026 Hawthorn & Bramble. All rights reserved, except for the third-party material credited above, which remains under its owners' licences.
